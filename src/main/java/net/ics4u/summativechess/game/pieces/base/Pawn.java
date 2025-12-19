@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import main.java.net.ics4u.summativechess.game.board.Board;
+import main.java.net.ics4u.summativechess.game.pieces.EnPassant;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
@@ -19,6 +20,7 @@ public class Pawn extends Piece {
     public int firstTurnMoveDistance = 2;
     public boolean canTakeForwards = false;
     public boolean canMoveDiagonal = false;
+    public static final String[] CAN_TAKE_EN_PASSANT = new String[]{"P"};
     
 
     public Pawn(BoardPos position, int owner) {
@@ -73,7 +75,7 @@ public class Pawn extends Piece {
         }
         
         // Handle diagonals
-        BoardPos forwards = board.getFacingDirection(player);
+        BoardPos forwards = board.getFacingDirection(player).add(position);
         
         // If we are going on the y axis
         if(forwards.x == 0) {
@@ -87,7 +89,12 @@ public class Pawn extends Piece {
             
             // If we can move to the diagonal left
             if(canMoveToPosition(left, board, true, false, !canMoveDiagonal)) {
-                
+                moves.add(left);
+            }
+            
+            // If we can move to the diagonal right
+            if(canMoveToPosition(right, board, true, false, !canMoveDiagonal)) {
+                moves.add(right);
             }
         }
         
@@ -100,6 +107,16 @@ public class Pawn extends Piece {
             // Get the right diagonal
             BoardPos right = new BoardPos(forwards);
             right.y += 1;
+            
+            // If we can move to the diagonal left
+            if(canMoveToPosition(left, board, true, false, !canMoveDiagonal)) {
+                moves.add(left);
+            }
+            
+            // If we can move to the diagonal right
+            if(canMoveToPosition(right, board, true, false, !canMoveDiagonal)) {
+                moves.add(right);
+            }
         }
         
         return moves;
@@ -107,22 +124,6 @@ public class Pawn extends Piece {
     
     @Override
     public void onMoveTo(BoardPos position, Board board) {
-        /*
-        // If there is a piece in the en passant 
-        if(board.enPassantPieces.containsKey(position)) {
-            //Get the piece in the en passant
-            ArrayList<Arraylist<Piece>> pieces = board.enPassantPieces.get(position);
-            
-            for (ArrayList<Piece> piece : pieces) {
-                // If the piece is a pawn
-                if(piece instanceof Pawn) {
-                    // En passant that pawn!
-                    piece.take();
-                }
-            }
-        }
-        */
-        
         // Subtract the original position from the new position to get the relative position
         BoardPos moved = new BoardPos(position).subtract(this.position);
         
@@ -133,8 +134,13 @@ public class Pawn extends Piece {
         if(distance > 1 && moved.equals(board.getFacingDirection(player).multiply(distance))) {
             // Go forwards until you reach the end
             for(int i = 0; i < distance; i++) {
-                // Add the point it passed
-                //board.enPassantPieces.put(board.getFacingDirection(player).multiply(i).add(this.position), this);
+                // Add the point it passed to enPassant
+                
+                // Get the position to add to the en passant
+                BoardPos enPassantPos = board.getFacingDirection(player).multiply(i).add(this.position);
+                
+                // Add the en passant
+                board.enPassantPieces.add(new EnPassant(enPassantPos, this, CAN_TAKE_EN_PASSANT));
             }
         }
     }

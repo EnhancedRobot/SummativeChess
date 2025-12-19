@@ -136,6 +136,9 @@ public class Board {
         
         // Set up the tiles
         setUpTiles(new BoardPos(8,8), piecesString);
+        
+        // Create the enPassant
+        enPassantPieces = new ArrayList<>();
     }
     
     /*

@@ -23,6 +23,12 @@ public class EnPassant {
         this.canTake = canTake;
     }
     
+    public EnPassant(BoardPos location, Piece piece, String[] canTake) {
+        this.location = location;
+        this.pieces = new Piece[]{piece};
+        this.canTake = canTake;
+    }
+    
     /*
      Takes every piece in the en passant
      
