@@ -1,0 +1,53 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package main.java.net.ics4u.summativechess.game.pieces;
+
+import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
+import main.java.net.ics4u.summativechess.util.BoardPos;
+
+/**
+ *
+ * @author joshu
+ */
+public class EnPassant {
+    public BoardPos location;
+    public Piece[] pieces;
+    
+    public String[] canTake;
+    
+    public EnPassant(BoardPos location, Piece[] pieces, String[] canTake) {
+        this.location = location;
+        this.pieces = pieces;
+        this.canTake = canTake;
+    }
+    
+    /*
+     Takes every piece in the en passant
+     
+     Post: Every piece is taken 
+    */
+    public void take() {
+        // For every piece
+        for(Piece piece : pieces) {
+            // Take that piece
+            piece.take();
+        }
+    }
+    
+    public boolean canBeTaken(Piece taking) {        
+        // Linear search for the id of the taking piece in the pieces that can take the en passant
+        // This could be done with a binary search if we force the user to sort
+        // Or do it for them
+        // But that's a lot of work when this is only really used a few times
+        // And also we don't expect that many pieces in the canTake
+        for (String i : canTake) {
+            if(i.equals("*") || i.equals(taking.id)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+}
