@@ -5,6 +5,7 @@
 package main.java.net.ics4u.summativechess.game.board;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import main.java.net.ics4u.summativechess.game.board.tiles.Tile;
 import main.java.net.ics4u.summativechess.game.end.VictoryCondition;
@@ -177,19 +178,25 @@ public class Board {
                pos.y >= 0 && pos.y < pieces.length;
     }
     
-    public void setUpBoard(BoardPos boardSize, String boardInput) {
+    public void setUpBoard(BoardPos boardSize, String boardInput, String tilesInput) {
         // Remove all whitespace
         boardInput = boardInput.replaceAll("\\s+", "");
+        tilesInput = tilesInput.replaceAll("\\s+", "");
                 
         // Split the lines
         String[] lines = boardInput.split("\\]\\[");
+        String[] tilesLines = tilesInput.split("\\]\\[");
         
         // Remove the first and last character from the first and last to remove the extra [ at the beginning and ] at the end
         lines[0] = lines[0].substring(1);
         lines[lines.length - 1] = lines[lines.length - 1].substring(0, lines[lines.length - 1].length() - 1);
 
-        // Create the pieces
-        String[][] piecesString = new String[8][];
+        // Remove the first and last character from the first and last to remove the extra [ at the beginning and ] at the end
+        tilesLines[0] = tilesLines[0].substring(1);
+        tilesLines[tilesLines.length - 1] = tilesLines[tilesLines.length - 1].substring(0, tilesLines[tilesLines.length - 1].length() - 1);
+        
+        // Create the pieces array
+        String[][] piecesString = new String[boardSize.y][];
         
         // For each line
         for(int i = 0; i < lines.length; i++) {
@@ -201,8 +208,17 @@ public class Board {
         setUpPieces(new BoardPos(8,8), piecesString);
         
         
+        // Create the pieces array
+        String[][] tilesString = new String[boardSize.y][];
+        
+        // For each line
+        for(int i = 0; i < lines.length; i++) {
+            // Split the strings by the | character to get each point
+            tilesString[i] = tilesLines[i].split("\\|", -1);
+        }
+        
         // Set up the tiles
-        setUpTiles(new BoardPos(8,8), piecesString);
+        setUpTiles(new BoardPos(8,8), tilesString);
         
         // Create the enPassant
         enPassantPieces = new ArrayList<>();
@@ -290,7 +306,7 @@ public class Board {
                 // If there is a piece on the given tile
                 if(tileString != null) {
                     // Set the piece to the piece we get from the tile
-                    setTileAt(position, Tile.getTile(tileString));
+                    setTileAt(position, Tile.getTile(tileString, position));
                 }
             } 
         }
