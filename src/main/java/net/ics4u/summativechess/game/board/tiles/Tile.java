@@ -5,6 +5,7 @@
 package main.java.net.ics4u.summativechess.game.board.tiles;
 
 import javax.swing.ImageIcon;
+import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
  *
@@ -16,7 +17,22 @@ public abstract class Tile {
     
     public void onMoveTo() {};
     
-    public static Tile getTile(String tileString) {
-        return null;
+    public static Tile getTile(String tileString, BoardPos position) {
+        // If it's trying to get an empty string, return nothing
+        if(tileString.equals("")) {
+            return null;
+        }
+        
+        Tile created;
+                
+        // Get the tile based on the given id
+        switch(tileString) {
+            default -> {
+                created = null;
+                System.out.println("Invalid piece: " + tileString + " at " + position.toString());
+            }
+        }
+        
+        return created;
     }
 }
