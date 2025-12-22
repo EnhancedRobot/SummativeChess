@@ -73,17 +73,20 @@ public class Pawn extends Piece {
         }
         
         // Handle diagonals
-        BoardPos forwards = board.getFacingDirection(player).add(position);
+        BoardPos forwards = board.getFacingDirection(player);
         
         // If we are going on the y axis
         if(forwards.x == 0) {
             // Get the left diagonal
-            BoardPos left = new BoardPos(forwards);
+            BoardPos left = new BoardPos(forwards).add(position);
             left.x += -1;
             
             // Get the right diagonal
-            BoardPos right = new BoardPos(forwards);
+            BoardPos right = new BoardPos(forwards).add(position);
             right.x += 1;
+            
+            System.out.println(left);
+            System.out.println(right);
             
             // If we can move to the diagonal left
             if(canMoveToPosition(left, true, false, !canMoveDiagonal)) {
@@ -99,11 +102,11 @@ public class Pawn extends Piece {
         // If we are going on the x axis
         if(forwards.y == 0) {
             // Get the left diagonal
-            BoardPos left = new BoardPos(forwards);
+            BoardPos left = new BoardPos(forwards).add(position);
             left.y += -1;
             
             // Get the right diagonal
-            BoardPos right = new BoardPos(forwards);
+            BoardPos right = new BoardPos(forwards).add(position);
             right.y += 1;
             
             // If we can move to the diagonal left

@@ -190,7 +190,7 @@ public abstract class Piece {
         
         // If the piece cannot be taken, then no you can't move there
         if(!piece.canBeTaken) {
-            // Return true
+            // Return false
             return false;
         }
 
@@ -291,6 +291,11 @@ public abstract class Piece {
         }
         
         return created;
+    }
+    
+    @Override
+    public String toString() {
+        return id + player;
     }
     
     
