@@ -4,6 +4,7 @@
  */
 package main.java.net.ics4u.summativechess;
 
+import java.util.Scanner;
 import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.pieces.EnPassant;
 import main.java.net.ics4u.summativechess.game.pieces.base.Pawn;
@@ -21,7 +22,10 @@ public class SummativeChess {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        test();
+    }
+    
+    public static void test() {
         // To create a new board
         Board board = new Board();
         
@@ -52,5 +56,19 @@ public class SummativeChess {
         // Setting up the board based on a string
         // I'll add file saving/loading later
         board.setUpBoard(new BoardPos(8,8), test, tiles);
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        board.printBoard();
+        
+        while(true) {
+            String move = scanner.nextLine();
+            
+            String[] moveParts = move.split(",");
+            
+            BoardPos click = new BoardPos(Integer.parseInt(moveParts[0]), Integer.parseInt(moveParts[1]));
+            
+            board.onClick(click);
+        }
     }
 }

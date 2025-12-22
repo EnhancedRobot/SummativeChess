@@ -105,8 +105,8 @@ public class Board {
         }
         
         // Set the piece's position to be the new position
-        setPieceAt(newLocation, piece);
         setPieceAt(piece.position, null);
+        setPieceAt(newLocation, piece);
         
         // Increment the number of times the player has moved this turn
         timesMovedThisTurn += 1;
@@ -377,8 +377,13 @@ public class Board {
     }
     
     public void onClick(BoardPos pos) {
-        if(selectedPiece == null) {
-            if(getPiece(pos) != null) {
+        int currentPlayer = turn % numPlayers;
+        
+        
+        Piece clickedPiece = getPiece(pos);
+        
+        if(clickedPiece != null) {
+            if(clickedPiece.player == currentPlayer) {
                 selectedPiece = pos;
                 
                 validMoves = getPiece(pos).getMoves();
@@ -386,10 +391,17 @@ public class Board {
                 System.out.println(validMoves);
                 
                 System.out.println(selectedPiece);
+                
+                return;
             }
-        } else {      
+        }
+        if(selectedPiece != null) {
             if(validMoves.contains(pos)) {
                 moveAndTake(selectedPiece, pos);
+                
+                selectedPiece = null;
+                validMoves = null;
+                
                 endTurn();
                 
                 printBoard();
