@@ -110,7 +110,7 @@ public class Board {
         
         
         if(getTile(newLocation) != null) {
-            getTile(newLocation).onMoveTo();
+            getTile(newLocation).onMoveTo(piece);
         }
         
         // Increment the number of times the player has moved this turn
@@ -189,6 +189,13 @@ public class Board {
    */
     public void setTileAt(BoardPos pos, Tile tile) {
         tiles[pos.y][pos.x] = tile;
+        
+        // If we are actually setting the tile to something
+        if(tile != null) {
+            tile.board = this;
+            
+            tile.position = pos;
+        }
     }
     
     /*

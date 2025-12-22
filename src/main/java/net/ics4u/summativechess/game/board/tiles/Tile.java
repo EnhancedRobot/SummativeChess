@@ -5,6 +5,8 @@
 package main.java.net.ics4u.summativechess.game.board.tiles;
 
 import javax.swing.ImageIcon;
+import main.java.net.ics4u.summativechess.game.board.Board;
+import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
@@ -12,10 +14,25 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
  * @author joshu
  */
 public abstract class Tile {
+    // Whether or not pieces can go over this tile
     public boolean isTraversable = true;
+    
+    // Wheter or not pieces can go on this tile
+    //public boolean isLandable = true;
+    
+    // The icon to display
     public ImageIcon image;
     
-    public void onMoveTo() {};
+    // The position on the board this tile is on
+    public BoardPos position;
+    
+    // The board this tile is on
+    public Board board;
+    
+    // The unique id of this tile
+    public String id;
+    
+    public void onMoveTo(Piece piece) {};
     
     public static Tile getTile(String tileString, BoardPos position) {
         // If it's trying to get an empty string, return nothing
@@ -27,6 +44,7 @@ public abstract class Tile {
                 
         // Get the tile based on the given id
         switch(tileString) {
+            case "M" -> {created = new MineTile();}
             default -> {
                 created = null;
                 System.out.println("Invalid piece: " + tileString + " at " + position.toString());
