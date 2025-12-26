@@ -25,7 +25,10 @@ public class Move {
     // The board this move takes place on
     public Board board;
     
-    // Create a new move
+    /*
+     Creates a new move
+     Post: Move is created with the given start, end, piece, and board
+    */
     public Move(BoardPos start, BoardPos end, Piece piece, Board board) {
         // Set the start and end
         this.start = new BoardPos(start);
@@ -37,11 +40,19 @@ public class Move {
         // Set the board
         this.board = board;
     }
-    
+    /*
+     Does the move
+     Post: Move is executed
+    */
     public void doMove() {
         board.moveAndTake(movingPiece, end);
     }
     
+    /*
+     Converts the move to a string
+     Currently just returns the end point as a string
+     Post: Returns the move as a string
+    */
     @Override
     public String toString() {
         return end.toString();

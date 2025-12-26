@@ -13,18 +13,23 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
  *
  * @author joshu
  */
-public class PawnDoubleForwardsMove extends Move {
-    
-    public BoardPos direction;
-    
+public class PawnDoubleForwardsMove extends Move {    
+    // The pieces that can take the pawn in en passant
     public static final String[] CAN_TAKE_EN_PASSANT = new String[]{"P"};
 
-    
+    /*
+     Creates a new move
+     Post: Move is created with the given start, end, piece, and board
+    */
     public PawnDoubleForwardsMove(BoardPos start, BoardPos end, Piece piece, Board board) {
         super(start, end, piece, board);
     }
     
     
+    /*
+     Does the move
+     Post: Move is executed, en passant is added
+    */
     @Override
     public void doMove() {
         // Move the piece
