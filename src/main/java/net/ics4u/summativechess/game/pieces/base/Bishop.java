@@ -14,11 +14,6 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
  * @author joshu
  */
 public class Bishop extends Piece {
-    
-    // The directions a bishop can move in
-    public static final BoardPos[] MOVEMENT_DIRECTIONS = {new BoardPos(-1, -1), new BoardPos(1, 1), 
-                                                         new BoardPos(1, -1), new BoardPos(-1, 1)};
-
     public Bishop(BoardPos position, int owner) {
         super(position, owner);
         
@@ -35,7 +30,7 @@ public class Bishop extends Piece {
         LinkedList<BoardPos> moves = new LinkedList<>();
         
         // For every direction the rook moves in
-        for(BoardPos dir : MOVEMENT_DIRECTIONS) {
+        for(BoardPos dir : BoardPos.DIAGONALS) {
             // Move straight in that direction
             moveStraight(dir, moves);
         }

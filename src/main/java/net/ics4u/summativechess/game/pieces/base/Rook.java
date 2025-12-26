@@ -13,11 +13,7 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
  *
  * @author joshu
  */
-public class Rook extends Piece {    
-    // The directions a rook can move in
-    public static final BoardPos[] MOVEMENT_DIRECTIONS = {new BoardPos(-1, 0), new BoardPos(1, 0), 
-                                                         new BoardPos(0, -1), new BoardPos(0, 1)};
-
+public class Rook extends Piece {
     public Rook(BoardPos position, int owner) {
         super(position, owner);
         
@@ -31,7 +27,7 @@ public class Rook extends Piece {
         LinkedList<BoardPos> moves = new LinkedList<>();
         
         // For every direction the rook moves in
-        for(BoardPos dir : MOVEMENT_DIRECTIONS) {
+        for(BoardPos dir : BoardPos.HORIZONTAL_VERTICAL) {
             // Move straight in that direction
             moveStraight(dir, moves);
         }

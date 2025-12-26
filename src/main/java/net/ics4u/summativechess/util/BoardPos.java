@@ -9,6 +9,22 @@ package main.java.net.ics4u.summativechess.util;
  * @author joshu
  */
 public class BoardPos {
+    
+    // The horizontal and vertical directions
+    public static final BoardPos[] HORIZONTAL_VERTICAL = {new BoardPos(-1, 0), new BoardPos(1, 0), 
+                                                          new BoardPos(0, -1), new BoardPos(0, 1)};
+    
+    // The diagonal directions
+    public static final BoardPos[] DIAGONALS = {new BoardPos(-1, -1), new BoardPos(1, 1), 
+                                                new BoardPos(1, -1), new BoardPos(-1, 1)};
+    
+    // Every direction.
+    // The same as Diagonals + Horizontal and vertical
+    public static final BoardPos[] DIRECTIONS = {new BoardPos(-1, 0), new BoardPos(1, 0), 
+                                                new BoardPos(0, -1), new BoardPos(0, 1),
+                                                new BoardPos(-1, -1), new BoardPos(1, 1), 
+                                                new BoardPos(1, -1), new BoardPos(-1, 1)};    
+    
     public int x;
     public int y;
     

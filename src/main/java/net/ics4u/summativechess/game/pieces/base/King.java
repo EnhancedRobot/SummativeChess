@@ -14,13 +14,6 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
  * @author joshu
  */
 public class King extends Piece {
-    
-    // The positions the king can move to
-    public static final BoardPos[] MOVEABLE_POSITIONS = {new BoardPos(-1, -1), new BoardPos(1, 1), 
-                                                         new BoardPos(1, -1), new BoardPos(-1, 1),
-                                                         new BoardPos(-1, 0), new BoardPos(1, 0), 
-                                                         new BoardPos(0, -1), new BoardPos(0, 1)};
-
     public King(BoardPos position, int owner) {
         super(position, owner);
         
@@ -37,8 +30,8 @@ public class King extends Piece {
         // The list of places the piece can go to
         LinkedList<BoardPos> moves = new LinkedList<>();
         
-        // For every position in moveable positions
-        for(BoardPos pos : MOVEABLE_POSITIONS) {
+        // For every direction
+        for(BoardPos pos : BoardPos.DIRECTIONS) {
             BoardPos movingTo = new BoardPos(position).add(pos);
             // If the piece can move there
             if(canMoveToPosition(movingTo, true, false)) {
@@ -48,8 +41,8 @@ public class King extends Piece {
         }
         
         // Handle castling
-        
-        
+
+             
         // Return the list of places this piece can go to
         return moves;
     }
