@@ -9,6 +9,7 @@ import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.pieces.EnPassant;
 import main.java.net.ics4u.summativechess.game.pieces.base.Pawn;
 import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
+import main.java.net.ics4u.summativechess.game.variations.ActiveVariations;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 
@@ -27,7 +28,7 @@ public class SummativeChess {
     
     public static void test() {
         // To create a new board
-        Board board = new Board();
+        Board board = new Board(new ActiveVariations());
         
         
         // Example of the board saved as a string

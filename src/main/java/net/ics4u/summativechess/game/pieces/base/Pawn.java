@@ -16,16 +16,7 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
  *
  * @author joshu
  */
-public class Pawn extends Piece {
-    // The distance the pawn can move on its first turn
-    public int firstTurnMoveDistance = 2;
-    
-    // Whether or not the pawn can take forwards
-    public boolean canTakeForwards = false;
-    
-    // Whether or not the pawn can move diagonally without having to take
-    public boolean canMoveDiagonal = false; 
-    
+public class Pawn extends Piece {    
     /*
      Creates a new piece with the given position and owner
      Post: New piece is created
@@ -48,15 +39,15 @@ public class Pawn extends Piece {
         
         
         // Handle forwards movement
-        // If it's the first move for the pawn
-        if(timesMoved == 0) {
+        // If the pawn can always move double or it's the first move for the pawn
+        if(board.variations.pawnsAlwaysMoveDouble || timesMoved == 0) {
             BoardPos check = new BoardPos(position);
-            for(int i = 0; i < firstTurnMoveDistance; i++) {
+            for(int i = 0; i < board.variations.pawnFirstTurnMoveDistance; i++) {
                 // Step forwards once in the facing direction of the player
                 check.add(board.getFacingDirection(player));
                 
                 // Check if we can move to the position
-                if(canMoveToPosition(check, canTakeForwards, false)) {
+                if(canMoveToPosition(check, board.variations.pawnCanTakeForwards, false)) {
                     // Add the location we are checking 
                     moves.add(new PawnDoubleForwardsMove(position, check, this, board));
                     
@@ -74,7 +65,7 @@ public class Pawn extends Piece {
             BoardPos check = board.getFacingDirection(player).add(position);
             
             // If we can move to the square in front
-            if(canMoveToPosition(check, canTakeForwards, false)) {
+            if(canMoveToPosition(check, board.variations.pawnCanTakeForwards, false)) {
                 // Add the location we are checking 
                 moves.add(getMoveFor(check));
             }
@@ -97,12 +88,12 @@ public class Pawn extends Piece {
             System.out.println(right);
             
             // If we can move to the diagonal left
-            if(canMoveToPosition(left, true, false, !canMoveDiagonal)) {
+            if(canMoveToPosition(left, true, false, !board.variations.pawnCanMoveDiagonal)) {
                 moves.add(getMoveFor(left));
             }
             
             // If we can move to the diagonal right
-            if(canMoveToPosition(right, true, false, !canMoveDiagonal)) {
+            if(canMoveToPosition(right, true, false, !board.variations.pawnCanMoveDiagonal)) {
                 moves.add(getMoveFor(right));
             }
         }
@@ -118,12 +109,12 @@ public class Pawn extends Piece {
             right.y += 1;
             
             // If we can move to the diagonal left
-            if(canMoveToPosition(left, true, false, !canMoveDiagonal)) {
+            if(canMoveToPosition(left, true, false, !board.variations.pawnCanMoveDiagonal)) {
                 moves.add(getMoveFor(left));
             }
             
             // If we can move to the diagonal right
-            if(canMoveToPosition(right, true, false, !canMoveDiagonal)) {
+            if(canMoveToPosition(right, true, false, !board.variations.pawnCanMoveDiagonal)) {
                 moves.add(getMoveFor(right));
             }
         }

@@ -19,6 +19,7 @@ import main.java.net.ics4u.summativechess.game.end.VictoryState;
 import main.java.net.ics4u.summativechess.game.pieces.EnPassant;
 import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.game.pieces.base.*;
+import main.java.net.ics4u.summativechess.game.variations.ActiveVariations;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -63,6 +64,10 @@ public class Board {
     // The number of players on the board
     // Defaults to two for normal games
     public int numPlayers = 2;
+    
+    
+    // The active variations
+    public ActiveVariations variations;
     
     
     /* 
@@ -266,6 +271,11 @@ public class Board {
     
     public void readFile(String filepath) {
         
+    }
+    
+    public Board(ActiveVariations variations) {
+        // Set the variations
+        this.variations = variations;
     }
     
     /*
