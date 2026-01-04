@@ -11,6 +11,7 @@ import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.board.tiles.Tile;
 import main.java.net.ics4u.summativechess.game.pieces.EnPassant;
 import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
+import main.java.net.ics4u.summativechess.game.pieces.variations.rock.Rock;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
@@ -277,7 +278,6 @@ public abstract class Piece {
         String pieceId = split[0];
         
         // Get the piece based on the given id
-        // TODO: Maybe rework to add a registry???
         switch(pieceId) {
             case "P" -> created = new Pawn(position, team);
             case "B" -> created = new Bishop(position, team);
@@ -285,6 +285,7 @@ public abstract class Piece {
             case "N" -> created = new Knight(position, team);
             case "Q" -> created = new Queen(position, team);
             case "R" -> created = new Rook(position, team);
+            case "O" -> created = new Rock(position, team);
             default -> {
                 created = null;
                 System.out.println("Invalid piece: " + pieceId + " at " + position.toString());
