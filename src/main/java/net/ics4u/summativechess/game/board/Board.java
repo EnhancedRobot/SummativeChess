@@ -4,15 +4,8 @@
  */
 package main.java.net.ics4u.summativechess.game.board;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import main.java.net.ics4u.summativechess.game.board.tiles.Tile;
 import main.java.net.ics4u.summativechess.game.end.VictoryCondition;
 import main.java.net.ics4u.summativechess.game.end.VictoryState;
@@ -21,8 +14,6 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.game.pieces.base.*;
 import main.java.net.ics4u.summativechess.game.variations.ActiveVariations;
 import main.java.net.ics4u.summativechess.util.BoardPos;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 /**
  *
@@ -417,14 +408,7 @@ public class Board {
         }
     }
     
-
-    /*
-     Gets the board as a string
-     
-     Post: returns the board as a string
-    */
-    @Override
-    public String toString() {
+    public String getPiecesString() {
         StringBuilder out = new StringBuilder();
         
         for (Piece[] row : pieces) {
@@ -455,6 +439,46 @@ public class Board {
         
         // Return the created string
         return out.toString();
+    }
+    public String getTilesString() {
+        StringBuilder out = new StringBuilder();
+        
+        for (Tile[] row : tiles) {
+            // Add the left edge
+            out.append('[');
+            
+            for (Tile tile : row) {
+                // Print the piece's id
+                if(tile != null) {
+                    // Add the tile id with spaces
+                    out.append(" ").append(tile.id).append(" ");
+                } else {
+                    // Add a spacer
+                    out.append("   ");
+                }
+                
+                out.append("|");
+            }
+                  
+            // Replace the last | with a ] for the right edge
+            out.replace(out.length()-1, out.length(), "]");
+            
+            // Add a new line
+            out.append('\n');
+        }
+        
+        // Return the created string
+        return out.toString();
+    }
+
+    /*
+     Gets the board as a string
+     
+     Post: returns the board as a string
+    */
+    @Override
+    public String toString() {
+        return getPiecesString() + "\n" + getTilesString(); 
     }
     
     /*
