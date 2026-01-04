@@ -273,20 +273,20 @@ public class Board {
      Sets up the board based off the board size, pieces, and tiles
      Post: Board is set up for the game to start
     */
-    public void setUpBoard(BoardPos boardSize, String boardInput, String tilesInput) {
+    public void setUpBoard(BoardPos boardSize, String piecesInput, String tilesInput) {
         String victoryConditionString = "EveryRoyal";
         
         // Remove all whitespace
-        boardInput = boardInput.replaceAll("\\s+", "");
+        piecesInput = piecesInput.replaceAll("\\s+", "");
         tilesInput = tilesInput.replaceAll("\\s+", "");
                 
         // Split the lines
-        String[] lines = boardInput.split("\\]\\[");
+        String[] piecesLines = piecesInput.split("\\]\\[");
         String[] tilesLines = tilesInput.split("\\]\\[");
         
         // Remove the first and last character from the first and last to remove the extra [ at the beginning and ] at the end
-        lines[0] = lines[0].substring(1);
-        lines[lines.length - 1] = lines[lines.length - 1].substring(0, lines[lines.length - 1].length() - 1);
+        piecesLines[0] = piecesLines[0].substring(1);
+        piecesLines[piecesLines.length - 1] = piecesLines[piecesLines.length - 1].substring(0, piecesLines[piecesLines.length - 1].length() - 1);
 
         // Remove the first and last character from the first and last to remove the extra [ at the beginning and ] at the end
         tilesLines[0] = tilesLines[0].substring(1);
@@ -296,9 +296,9 @@ public class Board {
         String[][] piecesString = new String[boardSize.y][];
         
         // For each line
-        for(int i = 0; i < lines.length; i++) {
+        for(int i = 0; i < piecesLines.length; i++) {
             // Split the strings by the | character to get each point
-            piecesString[i] = lines[i].split("\\|", -1);
+            piecesString[i] = piecesLines[i].split("\\|", -1);
         }
         
         // Set up the pieces
@@ -309,7 +309,7 @@ public class Board {
         String[][] tilesString = new String[boardSize.y][];
         
         // For each line
-        for(int i = 0; i < lines.length; i++) {
+        for(int i = 0; i < piecesLines.length; i++) {
             // Split the strings by the | character to get each point
             tilesString[i] = tilesLines[i].split("\\|", -1);
         }
