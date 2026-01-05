@@ -41,37 +41,71 @@ public class Pawn extends Piece {
         // Handle forwards movement
         // If the pawn can always move double or it's the first move for the pawn
         if(board.variations.pawnsAlwaysMoveDouble || timesMoved == 0) {
-            BoardPos check = new BoardPos(position);
-            for(int i = 0; i < board.variations.pawnFirstTurnMoveDistance; i++) {
-                // Step forwards once in the facing direction of the player
-                check.add(board.getFacingDirection(player));
-                
-                // Check if we can move to the position
-                if(canMoveToPosition(check, board.variations.pawnCanTakeForwards, false)) {
-                    // Add the location we are checking 
-                    moves.add(new PawnDoubleForwardsMove(position, check, this, board));
-                    
-                    // If there is a piece there, then break because we've encountered something that blocks us
-                    if (board.getPiece(check) != null) {
-                        break;
-                    }
-                } else {
-                    // We've encountered something that blocks us
-                    break;
-                }
-            }
+            // Check the multi forwards move
+            doubleForwardsMove(moves);
         } else {
-            // Get the square in front
-            BoardPos check = board.getFacingDirection(player).add(position);
-            
-            // If we can move to the square in front
-            if(canMoveToPosition(check, board.variations.pawnCanTakeForwards, false)) {
-                // Add the location we are checking 
-                moves.add(getMoveFor(check));
-            }
+            // Check the tile in front
+            singleForwardsMove(moves);
         }
         
         // Handle diagonals
+        getDiagonals(moves);
+        
+        return moves;
+    }
+    
+    /*
+     Gets the move to the position ahead
+    
+     Pre: List is initiated
+     Post: Adds the move if valid
+    */
+    public void singleForwardsMove(List<Move> moves) {
+        // Get the square in front
+        BoardPos check = board.getFacingDirection(player).add(position);
+
+        // If we can move to the square in front
+        if(canMoveToPosition(check, board.variations.pawnCanTakeForwards, false)) {
+            // Add the location we are checking 
+            moves.add(getMoveFor(check));
+        }
+    }
+    
+    /*
+     Gets the moves for multiple push
+    
+     Pre: List is initiated
+     Post: Adds the valid double forwards moves to the list 
+    */
+    public void doubleForwardsMove(List<Move> moves) {
+        // Get the position to check
+        BoardPos check = new BoardPos(position);
+        
+        for(int i = 0; i < board.variations.pawnFirstTurnMoveDistance; i++) {
+            // Step forwards once in the facing direction of the player
+            check.add(board.getFacingDirection(player));
+
+            // Check if we can move to the position
+            if(canMoveToPosition(check, board.variations.pawnCanTakeForwards, false)) {
+                // Add the location we are checking 
+                moves.add(new PawnDoubleForwardsMove(position, check, this, board));
+
+                // If there is a piece there, then break because we've encountered something that blocks us
+                if (board.getPiece(check) != null) {
+                    break;
+                }
+            } else {
+                // We've encountered something that blocks us
+                break;
+            }
+        }
+    }
+    
+    /*
+     
+    */
+    public void getDiagonals(List<Move> moves) {
+        // Forwards
         BoardPos forwards = board.getFacingDirection(player);
         
         // If we are going on the y axis
@@ -118,7 +152,5 @@ public class Pawn extends Piece {
                 moves.add(getMoveFor(right));
             }
         }
-        
-        return moves;
     }
 }
