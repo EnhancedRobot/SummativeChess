@@ -19,6 +19,12 @@ public class CultPawn extends Pawn implements ActiveAbility {
     
     // The turn the pawn's move forwards ability is active
     public int abilityActive = -1;
+    
+    // The kill count of this pawn
+    public int killCount = 0;
+    
+    // Whether or not this piece can activate their ability
+    public boolean canActivateAbility = false;
 
     /*
      Creates a new cult pawn
@@ -39,7 +45,14 @@ public class CultPawn extends Pawn implements ActiveAbility {
     */
     @Override
     public void activateAbility() {
-        abilityActive = board.turn;
+        // If you can activate the ability
+        if(canActivateAbility) {
+            // Set the ability to be useable for this turn
+            abilityActive = board.turn;
+            
+            // Reset the canActivateAbility
+            canActivateAbility = false;
+        }
     }
     
     /*
@@ -65,5 +78,28 @@ public class CultPawn extends Pawn implements ActiveAbility {
         getDiagonals(moves);
         
         return moves;
+    }
+    
+    /*
+     Handle stuff after moving
+    
+     Post: Increments the kill count if the move was a kill and checks if the kill count is 2 to allow for ability activation
+    */
+    @Override
+    public void onMove(Move move) {
+        // If the move was a take
+        if(move.isTake) {
+            // Increment the kill count
+            killCount++;
+            
+            // If the kill count is 2
+            if(killCount == 2) {
+                // Reset it
+                killCount = 0;
+                
+                // And make the ability possible to activate
+                canActivateAbility = true;
+            }
+        }
     }
 }
