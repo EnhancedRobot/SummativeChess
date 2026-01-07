@@ -35,7 +35,7 @@ public class CultPawn extends Pawn implements ActiveAbility {
         super(position, owner);
         
         // Set the pawn's id to P(Pawn) C(Cult)
-        id = "P.C";
+        id = "PC";
     }
 
     /*

@@ -11,6 +11,7 @@ import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.board.tiles.Tile;
 import main.java.net.ics4u.summativechess.game.pieces.EnPassant;
 import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
+import main.java.net.ics4u.summativechess.game.pieces.variations.cult.CultPawn;
 import main.java.net.ics4u.summativechess.game.pieces.variations.rock.Rock;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
@@ -285,7 +286,11 @@ public abstract class Piece {
             case "N" -> created = new Knight(position, team);
             case "Q" -> created = new Queen(position, team);
             case "R" -> created = new Rook(position, team);
+            
             case "O" -> created = new Rock(position, team);
+            
+            case "PC" -> created = new CultPawn(position, team);
+            
             default -> {
                 created = null;
                 System.out.println("Invalid piece: " + pieceId + " at " + position.toString());
