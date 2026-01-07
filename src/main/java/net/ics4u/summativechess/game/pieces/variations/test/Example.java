@@ -17,7 +17,11 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
  */
 public class Example extends Piece implements ActiveAbility {
 
+    /*
+     Creates a new Example piece
     
+     Post: Example piece is created
+    */
     public Example(BoardPos position, int owner) {
         super(position, owner);
         
@@ -31,23 +35,38 @@ public class Example extends Piece implements ActiveAbility {
     */
     @Override
     public List<Move> getMoves() {
+        // Create an ArrayList of moves
         ArrayList<Move> moves = new ArrayList<>();
         
+        // Get the position in front of the piece to check to move to
+        BoardPos pos = board.getFacingDirection(player).add(position);
         
-        if(canMoveToPosition(board.getFacingDirection(player).add(position))) {
-            moves.add(getMoveFor(board.getFacingDirection(player).add(position)));
+        // If the piece can move to the position in front of the piece
+        if(canMoveToPosition(pos)) {
+            // Add it to the list of places the piece can move
+            moves.add(getMoveFor(pos));
         }
         
+        // Return the list of moves
         return moves;
     }
-
+    
+    /*
+     Activate the ability
+    
+     Post: Piece is taken.
+    */
     @Override
     public void activateAbility() {
+        // Take the piece
         take();
     }
     
+    
+    
     @Override
     public void onMove(Move move) {
+        // Take the piece in front of you
         board.takePieceAt(board.getFacingDirection(player).add(position));
     }
 }
