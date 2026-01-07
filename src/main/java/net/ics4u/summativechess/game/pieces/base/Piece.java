@@ -13,6 +13,7 @@ import main.java.net.ics4u.summativechess.game.pieces.EnPassant;
 import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.game.pieces.variations.cult.CultPawn;
 import main.java.net.ics4u.summativechess.game.pieces.variations.rock.Rock;
+import main.java.net.ics4u.summativechess.game.pieces.variations.test.Example;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
@@ -291,10 +292,16 @@ public abstract class Piece {
             
             case "PC" -> created = new CultPawn(position, team);
             
+            case "Whatever" -> created = new Example(position, team);
+            
             default -> {
                 created = null;
                 System.out.println("Invalid piece: " + pieceId + " at " + position.toString());
             }
+        }
+        
+        if(!created.id.equals(pieceId)) {
+            System.out.println("Created id not equal to given input: (" + created.id + " isn't " + pieceId + ")");
         }
         
         return created;
