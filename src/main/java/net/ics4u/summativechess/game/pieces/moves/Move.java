@@ -55,6 +55,13 @@ public class Move {
     public void doMove() {
         board.moveAndTake(movingPiece, end);
         
+        
+        // Call onMoveTo() if there is a tile
+        if(board.getTile(end) != null) {
+            board.getTile(end).onMoveTo(this);
+        }
+        
+        // Call onMove() for the moving piece
         movingPiece.onMove(this);
     }
     

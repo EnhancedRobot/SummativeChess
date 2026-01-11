@@ -5,6 +5,7 @@
 package main.java.net.ics4u.summativechess.game.board.tiles;
 
 import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
+import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 
 /**
  *
@@ -30,9 +31,9 @@ public class MineTile extends Tile {
      Post: Deletes the piece and this tile
     */
     @Override
-    public void onMoveTo(Piece piece) {        
+    public void onMoveTo(Move move) {        
         // Take the piece when a player moves there
-        piece.take();
+        move.movingPiece.take();
         
         // Remove this tile from the game
         board.setTileAt(position, null);

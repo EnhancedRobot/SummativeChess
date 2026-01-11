@@ -122,11 +122,6 @@ public class Board {
             enPassant.takeIfPossible(piece);
         }
         
-        
-        if(getTile(newLocation) != null) {
-            getTile(newLocation).onMoveTo(piece);
-        }
-        
         // Increment the number of times the player has moved this turn
         timesMovedThisTurn += 1;
     }

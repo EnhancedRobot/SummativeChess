@@ -7,6 +7,7 @@ package main.java.net.ics4u.summativechess.game.board.tiles;
 import javax.swing.ImageIcon;
 import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
+import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
@@ -35,7 +36,7 @@ public abstract class Tile {
     /*
      Called when a piece moves onto the tile
     */
-    public void onMoveTo(Piece piece) {};
+    public void onMoveTo(Move move) {};
     
     /*
      Gets a new tile based on the given id and position
@@ -138,7 +139,7 @@ public class Tile{
             return;
         }
 
-        //asking player if they wat to use the power up
+        //asking player if they want to use the power up
         System.out.println("You landed on a power up: " + powerUp.getName());
         System.out.println("Do you want to use it? (yes/no): ");
 
@@ -175,7 +176,7 @@ public class Piece{
         shielded = true;
     }
 
-    public boolea isSheilded(){
+    public boolean isSheilded() {
         return shielded;
     }
 
