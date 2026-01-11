@@ -38,35 +38,7 @@ public class SummativeChess {
         // To create a new board
         Board board = new Board(new ActiveVariations());
         
-        
-        /* Example of the board saved as a string
-        String test = """
-                      [R,1|N,1|B,1|K,1|Q,1|B,1|N,1|R,1]
-                      [P,1|P,1|P,1|P,1|P,1|P,1|P,1|P,1]
-                      [   |   |   |   |   |   |   |   ]
-                      [   |   |   |   |   |   |   |   ]
-                      [   |   |   |   |   |   |   |   ]
-                      [   |   |   |   |   |   |   |   ]
-                      [P,0|P,0|P,0|P,0|P,0|P,0|P,0|P,0]
-                      [R,0|N,0|B,0|K,0|Q,0|B,0|N,0|R,0]
-                      """;
-        
-        String tiles = """
-                       [   |   |   |   |   |   |   |   ]
-                       [   |   |   |   |   |   |   |   ]
-                       [   |   |   |   |   |   |   |   ]
-                       [   |   |   |   |   |   |   |   ]
-                       [   |   |   |   |   |   |   |   ]
-                       [   |   |   |   |   |   |   |   ]
-                       [   |   |   |   |   |   |   |   ]
-                       [   |   |   |   |   |   |   |   ]
-                       """;
-        
-        // Setting up the board based on a string
-        // I'll add file saving/loading later
-        board.setUpBoard(new BoardPos(8,8), test, tiles);
-        */
-        
+        // Load the board file
         board.loadFromFile("src/main/assets/boardsetups/Chess.board");
         
         Scanner scanner = new Scanner(System.in);
