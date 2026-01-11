@@ -161,14 +161,19 @@ public class Pawn extends Piece {
         // If the square in front is off the board
         if(board.isInBoard(board.getFacingDirection(player).add(position))) {
             // Promote
-            // Only to queen for now while we wait for UI
-            
-            // Create a new Queen
-            Queen queen = new Queen(position, player);
-            
-            
-            // Set the piece on the tile to be a queen
-            board.setPieceAt(position, queen);
+            promote();
         }
+    }
+    
+    // Promotes the piece
+    public void promote() {
+        // Only to queen for now while we wait for UI
+            
+        // Create a new Queen
+        Queen queen = new Queen(position, player);
+
+
+        // Set the piece on the tile to be a queen
+        board.setPieceAt(position, queen);
     }
 }
