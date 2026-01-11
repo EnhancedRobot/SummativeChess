@@ -156,6 +156,12 @@ public class Pawn extends Piece {
         }
     }
     
+    /*
+     Called when the piece moves
+    
+    
+     Post: Checks for promotion
+    */
     @Override
     public void onMove(Move move) {
         // If the square in front is off the board
@@ -165,7 +171,11 @@ public class Pawn extends Piece {
         }
     }
     
-    // Promotes the piece
+    /*
+     Promotes the piece
+    
+     Post: Piece promotion is selected and piece is changed
+    */
     public void promote() {
         // Only to queen for now while we wait for UI
             
