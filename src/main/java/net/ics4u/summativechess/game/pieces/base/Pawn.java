@@ -165,7 +165,7 @@ public class Pawn extends Piece {
     @Override
     public void onMove(Move move) {
         // If the square in front is off the board
-        if(board.isInBoard(board.getFacingDirection(player).add(position))) {
+        if(!board.isInBoard(board.getFacingDirection(player).add(position))) {
             // Promote
             promote();
         }
