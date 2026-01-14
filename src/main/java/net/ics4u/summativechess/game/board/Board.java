@@ -146,8 +146,23 @@ public class Board {
         // Increment turn counter
         turn += 1;
         
+        selectedPiece = null;
+        validMoves = null;
+        
         // Check for a victory
         checkForVictory();
+    }
+    
+    /*
+     Starts the next turn
+     
+     Pre: Turn is incremented
+     Post: Game is updated in preperation for next player's turn
+    */
+    public void startTurn() {
+        int currentPlayer = turn % numPlayers;
+        
+        removeEnPassantFor(currentPlayer);
     }
 
     
@@ -205,6 +220,20 @@ public class Board {
         
         // Otherwise if we don't find any, return null
         return null;
+    }
+    
+    /*
+     Removes every en passant for a specific team
+    
+     Post: All en passants are removed for given team 
+    */
+    public void removeEnPassantFor(int team) {
+        for (int i = 0; i < enPassantPieces.size(); i++) {
+            if(enPassantPieces.get(i).team == team) {
+                // Remove the en passant from the list
+                enPassantPieces.remove(i);
+            }
+        }   
     }
     
     /*
@@ -515,7 +544,6 @@ public class Board {
     public void onClick(BoardPos pos) {
         int currentPlayer = turn % numPlayers;
         
-        
         Piece clickedPiece = getPiece(pos);
         
         if(clickedPiece != null) {
@@ -523,11 +551,11 @@ public class Board {
                 selectedPiece = pos;
                 
                 validMoves = getPiece(pos).getMoves();
-                
+                /*
                 System.out.println(validMoves);
                 
                 System.out.println(selectedPiece);
-                
+                */
                 return;
             }
         }
@@ -541,12 +569,14 @@ public class Board {
                 validMoves = null;
                 
                 endTurn();
-                
-                System.out.print(toString());
+                startTurn();
+                /*
+                System.out.print(this.toString());
 
                 System.out.println();
                 System.out.println(capturedPieces);
-                System.out.println();                
+                System.out.println();       
+                */
             }
         }
     }

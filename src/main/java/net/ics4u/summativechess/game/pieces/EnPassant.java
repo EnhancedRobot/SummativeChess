@@ -4,6 +4,7 @@
  */
 package main.java.net.ics4u.summativechess.game.pieces;
 
+import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
@@ -21,15 +22,23 @@ public class EnPassant {
     // The list of piece ids that can take the en passant
     public String[] canTake;
     
+    // The team that the en passant is from
+    public int team;
+    
+    // The board this en passant is on
+    public Board board;
+    
     /*
      Creates a new en passant with multiple pieces
     
      Post: Creates a new en passant
     */
-    public EnPassant(BoardPos location, Piece[] pieces, String[] canTake) {
+    public EnPassant(BoardPos location, Piece[] pieces, String[] canTake, int team, Board board) {
         this.location = location;
         this.pieces = pieces;
         this.canTake = canTake;
+        this.team = team;
+        this.board = board;
     }
     
     /*
@@ -37,10 +46,12 @@ public class EnPassant {
     
      Post: Creates a new en passant
     */
-    public EnPassant(BoardPos location, Piece piece, String[] canTake) {
+    public EnPassant(BoardPos location, Piece piece, String[] canTake, Board board) {
         this.location = location;
         this.pieces = new Piece[]{piece};
         this.canTake = canTake;
+        this.team = piece.player;
+        this.board = board;
     }
     
     /*
@@ -65,6 +76,8 @@ public class EnPassant {
             // Take that piece
             piece.take();
         }
+        
+        board.enPassantPieces.remove(this);
     }
     
     /*
@@ -85,5 +98,9 @@ public class EnPassant {
         }
         
         return false;
+    }
+    
+    public String toString() {
+        return pieces[0].id + " on team " + team;
     }
 }

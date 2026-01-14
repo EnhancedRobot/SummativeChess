@@ -46,7 +46,7 @@ public class CastleMove extends Move {
         board.moveAndTake(rook, rookEnd);
         
         // Add the en passant at the start position to take the king and rook
-        board.enPassantPieces.add(new EnPassant(start, new Piece[]{movingPiece, rook}, new String[]{"*"}));
+        board.enPassantPieces.add(new EnPassant(start, new Piece[]{movingPiece, rook}, new String[]{"*"}, movingPiece.player, movingPiece.board));
         
         
         // Call onMoveTo() if there is a tile for the king

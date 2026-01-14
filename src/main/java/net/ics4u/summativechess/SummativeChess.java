@@ -58,8 +58,7 @@ public class SummativeChess {
         }
     }
     
-    public static void testBoardFrame()
-    {
-        var boardFrame = new BoardFrame();
+    public static void testBoardFrame() {
+        BoardFrame boardFrame = new BoardFrame();
     }
 }

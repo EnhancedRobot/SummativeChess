@@ -41,13 +41,13 @@ public class PawnDoubleForwardsMove extends Move {
         // Get the distance travelled
         int distance = Math.max(Math.abs(moved.x), Math.abs(moved.y));
         
-        // Go forwards until you reach the end
-        for(int i = 0; i < distance; i++) {                
+        // Go forwards until you reach the end, except the last tile
+        for(int i = 0; i < distance - 1; i++) {                
             // Get the position to add to the en passant
             BoardPos enPassantPos = board.getFacingDirection(movingPiece.player).multiply(i).add(start);
                 
             // Add the en passant
-            board.enPassantPieces.add(new EnPassant(enPassantPos, movingPiece, CAN_TAKE_EN_PASSANT));
+            board.enPassantPieces.add(new EnPassant(enPassantPos, movingPiece, CAN_TAKE_EN_PASSANT, movingPiece.board));
         }
     }
 }

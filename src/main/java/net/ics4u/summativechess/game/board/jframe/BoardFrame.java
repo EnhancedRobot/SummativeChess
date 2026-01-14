@@ -335,7 +335,7 @@ public class BoardFrame extends javax.swing.JFrame {
         // Redraw the board in case something has changed
         drawBoard();
 
-        System.out.print("clicked on table");
+        //System.out.print("clicked on table");
     }//GEN-LAST:event_BoardTableMouseClicked
 
     private void BoardTableMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BoardTableMouseMoved
