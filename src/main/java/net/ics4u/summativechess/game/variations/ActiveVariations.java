@@ -10,14 +10,14 @@ package main.java.net.ics4u.summativechess.game.variations;
  */
 public class ActiveVariations {
     // Whether or not pawns can always move forwards
-    public boolean pawnsAlwaysMoveDouble = false;
+    public boolean pawnsAlwaysMoveDouble = true;
     
     // The distance the pawn can move on its first turn
     public int pawnFirstTurnMoveDistance = 2;
     
     // Whether or not the pawn can take forwards
-    public boolean pawnCanTakeForwards = false;
+    public boolean pawnCanTakeForwards = true;
     
     // Whether or not the pawn can move diagonally without having to take
-    public boolean pawnCanMoveDiagonal = false;
+    public boolean pawnCanMoveDiagonal = true;
 }
