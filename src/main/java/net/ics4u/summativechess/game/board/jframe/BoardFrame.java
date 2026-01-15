@@ -61,6 +61,11 @@ public class BoardFrame extends javax.swing.JFrame {
         }
     }
 
+    /*
+     Draws all the images for a specific position
+    
+     Post: Image is drawn.
+    */
     private void drawAt(BoardPos pos) {
         // Get the piece at this row and column position
         Piece piece = this.board.getPiece(pos);
@@ -95,7 +100,6 @@ public class BoardFrame extends javax.swing.JFrame {
 
     private void clearBoardAtPos(BoardPos pos) {
         BoardTable.setValueAt(null, pos.y + 1, pos.x + 1);
-
     }
 
     /*

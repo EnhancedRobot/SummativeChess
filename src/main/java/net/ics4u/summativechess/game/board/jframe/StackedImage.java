@@ -14,8 +14,14 @@ import javax.swing.ImageIcon;
  * @author joshu
  */
 public class StackedImage extends ImageIcon {
+    // The list of icons that make up the stacked image
     public ImageIcon[] icons;
     
+    /*
+     Draws the icon
+    
+     Post: Icon is drawn
+    */
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         // For every icon slot
