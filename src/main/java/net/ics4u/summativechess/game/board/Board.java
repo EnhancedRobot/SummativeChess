@@ -285,6 +285,11 @@ public class Board {
                pos.y >= 0 && pos.y < pieces.length;
     }
     
+    /*
+     Loads the board from a given filepath
+    
+     Post: Board is loaded
+    */
     public void loadFromFile(String filepath) {
         // Define data
         BoardFileData data;
@@ -303,6 +308,9 @@ public class Board {
         setUpBoard(data.size, data.pieces, data.tiles);
     }
     
+    /*
+     Creates a board with a set of active variations
+    */
     public Board(ActiveVariations variations) {
         // Set the variations
         this.variations = variations;
@@ -522,7 +530,6 @@ public class Board {
     
     /*
      Gets the move to a given position is the valid moves
-     This is temp code, should be moved elsewhere when we implement UI
     
      Post: returns the move to a given position
     */
@@ -537,7 +544,7 @@ public class Board {
     }
     
     /*
-     Temp code for handling a click at a given position
+     Handles a click at a given position
     
      Post: Does movement and selection
     */
@@ -548,35 +555,30 @@ public class Board {
         
         if(clickedPiece != null) {
             if(clickedPiece.player == currentPlayer) {
+                // Set the selected piece
                 selectedPiece = pos;
                 
+                // Get the valid moves
                 validMoves = getPiece(pos).getMoves();
-                /*
-                System.out.println(validMoves);
-                
-                System.out.println(selectedPiece);
-                */
+
                 return;
             }
         }
+        // If there is a selected piece and the player didn't click on one of their own pieces
         if(selectedPiece != null) {
+            // Get the move to the tile
             Move move = getMoveTo(pos);
             
+            // If there is a move to the tile
             if(move != null) {
+                // Do the move
                 move.doMove();
                 
-                selectedPiece = null;
-                validMoves = null;
-                
+                // End the old player's turn
                 endTurn();
+                
+                // Start the next player's turn
                 startTurn();
-                /*
-                System.out.print(this.toString());
-
-                System.out.println();
-                System.out.println(capturedPieces);
-                System.out.println();       
-                */
             }
         }
     }

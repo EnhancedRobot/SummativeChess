@@ -2,6 +2,7 @@ package main.java.net.ics4u.summativechess.game.board.jframe;
 
 import java.awt.*;
 import java.awt.Component;
+import javax.swing.ImageIcon;
 import javax.swing.table.*;
 import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
@@ -54,23 +55,42 @@ public class BoardFrame extends javax.swing.JFrame {
                 // Get the BoardPos at this row and column
                 BoardPos pos = new BoardPos(row, column);
 
-                // Get the piece at this row and column position
-                Piece piece = this.board.getPiece(pos);
-
-                // Check if a piece was found at this position
-                if (piece == null) {
-                    // Clear the board at this position since there is no piece
-                    clearBoardAtPos(pos);
-                } else {
-                    // Draw the piece at it's position
-                    drawPieceOnBoard(piece);
-                }
+                // Draw whatever's at that position
+                drawAt(pos);
             }
         }
     }
 
-    private void drawPieceOnBoard(Piece piece) {
-        BoardTable.setValueAt(piece.image, piece.position.y + 1, piece.position.x + 1);
+    private void drawAt(BoardPos pos) {
+        // Get the piece at this row and column position
+        Piece piece = this.board.getPiece(pos);
+        
+        // Create the stacked image for that tile
+        StackedImage image = new StackedImage();
+        
+        // Set the image icons to be a new array (Array contains icon, selected, move)
+        image.icons = new ImageIcon[3];
+        
+        // If there is a piece on the tile
+        if(piece != null) {
+            // Add the piece image in slot 0
+            image.icons[0] = piece.image;
+            
+            // If the piece is the selected piece
+            if(board.selectedPiece != null && board.selectedPiece.equals(piece.position)) {
+                // Add the select icon in slot 1
+                image.icons[1] = new ImageIcon("src/main/assets/images/base/select.png");
+            }
+        }
+        
+        // If the position is a valid move
+        if(board.validMoves != null && board.getMoveTo(pos) != null) {
+            // Add the move icon
+            image.icons[2] = new ImageIcon("src/main/assets/images/base/move.png");
+        }
+        
+        // Set the image for the tile
+        BoardTable.setValueAt(image, pos.y + 1, pos.x + 1);
     }
 
     private void clearBoardAtPos(BoardPos pos) {
