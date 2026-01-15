@@ -58,7 +58,8 @@ public abstract class Tile {
         switch(tileString) {
             case "M" -> {created = new MineTile();}
             case "PT" -> {created = new TeleportPowerup();}
-            case "PM" -> {created = new ExtraMovePowerup();}
+            // Unfortuneately, It's not easy to do this, so I didn't add it. Sorry.
+            //case "PM" -> {created = new ExtraMovePowerup();}
             case "PS" -> {created = new ShieldedPowerup();}
             default -> {
                 created = null;
