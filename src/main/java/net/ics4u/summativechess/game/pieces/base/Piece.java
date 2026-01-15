@@ -382,4 +382,32 @@ public abstract class Piece {
         // Return moving straight with the new list
         return moveStraight(dir, out);
     }
+    
+    private boolean extraMove = false;
+    private boolean shielded = false;
+    private boolean canTeleport = false;
+    
+    public void setExtraMove(boolean val){
+        extraMove = val;
+    }
+
+    public void setShielded(boolean val){
+        shielded = val;
+    }
+
+    public void setCanTeleport(boolean val){
+        canTeleport = val;
+    }
+
+    public boolean hasExtraMove(){
+        return extraMove;
+    }
+
+    public boolean hasShielded(){
+        return shielded;
+    }
+
+    public boolean canTeleport(){
+        return canTeleport;
+    }
 }
