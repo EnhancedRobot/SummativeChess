@@ -25,6 +25,9 @@ public class Rook extends Piece {
 
         // Set the rook's id to R
         id = "R";
+        
+        // Set the image path
+        imagePath = "base/rook";        
 
         // Set the image icon for the piece
         setImage();

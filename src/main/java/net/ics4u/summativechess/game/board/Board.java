@@ -314,6 +314,9 @@ public class Board {
     public Board(ActiveVariations variations) {
         // Set the variations
         this.variations = variations;
+        
+        // Load the board
+        loadFromFile(variations.path);
     }
     
     /*
@@ -487,6 +490,12 @@ public class Board {
         // Return the created string
         return out.toString();
     }
+    
+    /*
+     Gets a string representation of the tiles
+    
+     Post: Returns a string representation of the tiles
+    */
     public String getTilesString() {
         StringBuilder out = new StringBuilder();
         

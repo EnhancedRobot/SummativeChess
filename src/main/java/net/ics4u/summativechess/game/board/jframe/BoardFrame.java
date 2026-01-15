@@ -32,9 +32,6 @@ public class BoardFrame extends javax.swing.JFrame {
         // To create a new board
         this.board = new Board(new ActiveVariations());
 
-        // Load the board file
-        this.board.loadFromFile("src/main/assets/boardsetups/Chess.board");
-
         // Override the table cell renderers with a special image renderer
         for (int i = 0; i < 10; i++) {
             BoardTable.getColumnModel().getColumn(i).setCellRenderer(new ImageCellRenderer());

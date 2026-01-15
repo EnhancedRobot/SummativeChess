@@ -25,6 +25,9 @@ public class Queen extends Piece {
 
         // Set the queen's id to Q
         id = "Q";
+        
+        // Set the image path
+        imagePath = "base/queen";        
 
         // Set the image icon for the piece
         setImage();

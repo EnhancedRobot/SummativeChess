@@ -12,7 +12,6 @@ import main.java.net.ics4u.summativechess.game.board.jframe.BoardFrame;
  * @author joshu
  */
 public class SummativeChess {
-
     /*
      Entrypoint for the program
     

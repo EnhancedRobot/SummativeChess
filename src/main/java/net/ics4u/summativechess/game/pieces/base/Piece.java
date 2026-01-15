@@ -27,7 +27,10 @@ public abstract class Piece {
 
     // The image of the piece on the board
     public ImageIcon image;
-
+    
+    // The path to the icon
+    public String imagePath;
+    
     // The position of this piece on the board
     public BoardPos position;
 
@@ -56,31 +59,17 @@ public abstract class Piece {
      * Set the image icon on the piece.
      */
     protected void setImage() {
-
-        String fileName = "";
-
-        switch (this.id) {
-            case "P" ->
-                fileName = "pawn";
-            case "B" ->
-                fileName = "bishop";
-            case "K" ->
-                fileName = "king";
-            case "N" ->
-                fileName = "knight";
-            case "Q" ->
-                fileName = "queen";
-            case "R" ->
-                fileName = "rook";
-        }
+        String fileName = imagePath;
 
         if (this.player == 0) {
             fileName = fileName + "_w.png";
         } else {
             fileName = fileName + "_b.png";
         }
+        
+        System.out.println(fileName);
        
-        this.image = new ImageIcon("src/main/assets/images/base/" + fileName);
+        this.image = new ImageIcon("src/main/assets/images/" + fileName);
     }
 
     /*

@@ -31,6 +31,10 @@ public class Knight extends Piece {
 
         // Set the knight's id to N (King is K, this is standard)
         id = "N";
+        
+        // Set the image path
+        imagePath = "base/knight";
+
 
         // Set the image icon for the piece
         setImage();

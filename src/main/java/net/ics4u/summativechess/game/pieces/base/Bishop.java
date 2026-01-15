@@ -26,6 +26,9 @@ public class Bishop extends Piece {
         // Set the bishop's id to be B
         id = "B";
         
+        // Set the image path
+        imagePath = "base/bishop";
+        
         // Set the image icon for the piece
         setImage();
     }
