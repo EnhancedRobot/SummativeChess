@@ -22,7 +22,12 @@ public class ActiveVariations {
     public static final String BOARD_SETUPS_PATH = "assets/boardsetups/";
     
     public ActiveVariations () {
-        randomize();
+        //randomize();
+        test();
+    }
+    
+    public void test() {
+        
     }
     
     public void randomize() {
