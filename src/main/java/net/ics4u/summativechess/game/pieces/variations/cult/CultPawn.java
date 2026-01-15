@@ -23,9 +23,6 @@ public class CultPawn extends Pawn implements ActiveAbility {
     // The kill count of this pawn
     public int killCount = 0;
     
-    // Whether or not this piece can activate their ability
-    public boolean canActivateAbility = false;
-
     /*
      Creates a new cult pawn
     
@@ -45,14 +42,18 @@ public class CultPawn extends Pawn implements ActiveAbility {
     */
     @Override
     public void activateAbility() {
-        // If you can activate the ability
-        if(canActivateAbility) {
-            // Set the ability to be useable for this turn
-            abilityActive = board.turn;
+        System.out.println("Actiavted!" + killCount);
+        // If the kill count is 2
+        if(killCount >= 2) {
+            // Reset it
+            killCount = 0;
             
-            // Reset the canActivateAbility
-            canActivateAbility = false;
+            // Set the ability to be active
+            abilityActive = board.turn;
         }
+        
+        // Get the list of moves
+        board.validMoves = getMoves();
     }
     
     /*
@@ -87,19 +88,20 @@ public class CultPawn extends Pawn implements ActiveAbility {
     */
     @Override
     public void onMove(Move move) {
+        // Call pawn's on move
+        super.onMove(move);
+        
         // If the move was a take
         if(move.isTake) {
             // Increment the kill count
             killCount++;
             
-            // If the kill count is 2
-            if(killCount == 2) {
-                // Reset it
-                killCount = 0;
-                
-                // And make the ability possible to activate
-                canActivateAbility = true;
-            }
+            System.out.println(killCount);
         }
+    }
+
+    @Override
+    public String getDescription() {
+        return "Activate after taking 2 pieces to move multiple squares again!";
     }
 }
