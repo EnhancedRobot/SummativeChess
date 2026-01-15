@@ -19,7 +19,7 @@ import java.util.stream.Stream;
  */
 public class ActiveVariations {
     // The path to the board setups
-    public static final String BOARD_SETUPS_PATH = "src/main/assets/boardsetups/";
+    public static final String BOARD_SETUPS_PATH = "assets/boardsetups/";
     
     public ActiveVariations () {
         randomize();

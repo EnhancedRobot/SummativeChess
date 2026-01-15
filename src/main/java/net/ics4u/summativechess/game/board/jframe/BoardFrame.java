@@ -90,6 +90,11 @@ public class BoardFrame extends javax.swing.JFrame {
         // Set the captured pieces texrts
         CapPieces2.setText(whiteCaptured.toString());
         CapPieaces1.setText(blackCaptured.toString());
+        
+        
+        if(board.selectedPiece != null) {
+            
+        }
     }
 
     /*
@@ -122,14 +127,14 @@ public class BoardFrame extends javax.swing.JFrame {
             // If the piece is the selected piece
             if(board.selectedPiece != null && board.selectedPiece.equals(piece.position)) {
                 // Add the select icon in slot 1
-                image.icons[2] = new ImageIcon("src/main/assets/images/base/select.png");
+                image.icons[2] = new ImageIcon("assets/images/base/select.png");
             }
         }
         
         // If the position is a valid move
         if(board.validMoves != null && board.getMoveTo(pos) != null) {
             // Add the move icon
-            image.icons[3] = new ImageIcon("src/main/assets/images/base/move.png");
+            image.icons[3] = new ImageIcon("assets/images/base/move.png");
         }
         
         // Set the image for the tile
@@ -258,6 +263,8 @@ public class BoardFrame extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         CapPieaces1 = new javax.swing.JTextArea();
         ReturnButton = new javax.swing.JButton();
+        activateAbilityButton = new javax.swing.JButton();
+        abilityText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -342,6 +349,8 @@ public class BoardFrame extends javax.swing.JFrame {
         ReturnButton.setText("Quit");
         ReturnButton.addActionListener(this::ReturnButtonActionPerformed);
 
+        activateAbilityButton.setText("Activate Ability!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -354,9 +363,17 @@ public class BoardFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(activateAbilityButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(abilityText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,7 +386,12 @@ public class BoardFrame extends javax.swing.JFrame {
                             .addComponent(ReturnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)
+                        .addComponent(activateAbilityButton)
+                        .addGap(1, 1, 1)
+                        .addComponent(abilityText, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
@@ -414,6 +436,8 @@ public class BoardFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea CapPieces2;
     private javax.swing.JTextArea MoveListArea;
     private javax.swing.JButton ReturnButton;
+    private javax.swing.JLabel abilityText;
+    private javax.swing.JButton activateAbilityButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

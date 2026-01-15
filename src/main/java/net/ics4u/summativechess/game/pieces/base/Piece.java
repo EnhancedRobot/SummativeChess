@@ -69,7 +69,7 @@ public abstract class Piece {
             fileName = fileName + "_b.png";
         }
                
-        this.image = new ImageIcon("src/main/assets/images/" + fileName);
+        this.image = new ImageIcon("assets/images/" + fileName);
     }
 
     /*
