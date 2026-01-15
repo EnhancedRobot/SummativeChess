@@ -26,7 +26,8 @@ public class ActiveVariations {
         pawnCanMoveDiagonal = random.nextBoolean();
         
         // Randomize int values
-        pawnFirstTurnMoveDistance = random.nextInt(1,4);
+        // Prefers 2 (66% 2, 33% 3)
+        pawnFirstTurnMoveDistance = Math.max(2, random.nextInt(1,4));
     }
     
     // Whether or not pawns can always move forwards
