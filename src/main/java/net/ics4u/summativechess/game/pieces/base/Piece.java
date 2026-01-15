@@ -332,8 +332,8 @@ public abstract class Piece {
                 System.out.println("Invalid piece: " + pieceId + " at " + position.toString());
             }
         }
-
-        if (!created.id.equals(pieceId)) {
+        
+        if (created != null && !created.id.equals(pieceId)) {
             System.out.println("Created id not equal to given input: (" + created.id + " isn't " + pieceId + ")");
         }
 
