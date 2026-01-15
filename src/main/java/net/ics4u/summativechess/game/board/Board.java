@@ -146,6 +146,7 @@ public class Board {
         // Increment turn counter
         turn += 1;
         
+        // Reset selected piece and valid moves
         selectedPiece = null;
         validMoves = null;
         
@@ -160,8 +161,10 @@ public class Board {
      Post: Game is updated in preperation for next player's turn
     */
     public void startTurn() {
+        // Get the current player
         int currentPlayer = turn % numPlayers;
         
+        // Remove all the en passants for that player
         removeEnPassantFor(currentPlayer);
     }
 
@@ -172,11 +175,15 @@ public class Board {
      Post: Victory is checked, if there is a winner that winner is output
     */
     public void checkForVictory() {
+        // Get the victory state of the game
         VictoryState state = victoryCondition.isEnded(this);
         
+        // Get the current winner
         int winner = state.getWinner();
         
+        // If there is a winner
         if(winner >= 0) {
+            // Win the game for the winner
             winGame(winner);
         }
     }
