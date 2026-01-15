@@ -180,7 +180,7 @@ public abstract class Piece {
                 notCollided = false;
 
                 // If the piece cannot be taken, we don't need to do collision logic so continue
-                if (!piece.canBeTaken) {
+                if (!piece.canBeTaken || piece.shielded) {
                     // Continue
                     continue;
                 }
@@ -264,7 +264,7 @@ public abstract class Piece {
         }
 
         // If the piece cannot be taken, then no you can't move there
-        if (!piece.canBeTaken) {
+        if (!piece.canBeTaken || piece.shielded) {
             // Return false
             return false;
         }
