@@ -13,6 +13,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.PawnDoubleForwardsMo
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The pawn piece
  *
  * @author joshu
  */

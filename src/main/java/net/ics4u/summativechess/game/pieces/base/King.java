@@ -13,6 +13,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The king piece
  *
  * @author joshu
  */

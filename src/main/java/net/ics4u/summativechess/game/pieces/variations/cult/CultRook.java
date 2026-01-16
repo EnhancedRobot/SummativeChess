@@ -12,6 +12,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The cultist rook piece, a rook with an active ability
  *
  * @author connor
  */

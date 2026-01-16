@@ -11,6 +11,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The rock piece, a piece that cannot move and is not takeable, acting as a blocker.
  *
  * @author joshu
  */

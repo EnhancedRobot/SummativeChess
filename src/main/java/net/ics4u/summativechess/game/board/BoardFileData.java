@@ -7,6 +7,7 @@ package main.java.net.ics4u.summativechess.game.board;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * A class that holds board file data
  *
  * @author joshu
  */

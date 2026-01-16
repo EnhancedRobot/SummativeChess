@@ -17,6 +17,7 @@ import main.java.net.ics4u.summativechess.game.pieces.variations.test.Example;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The base piece class, from which all pieces inherit
  *
  * @author joshu
  */

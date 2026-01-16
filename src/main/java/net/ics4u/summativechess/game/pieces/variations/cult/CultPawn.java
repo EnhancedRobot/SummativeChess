@@ -12,7 +12,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
- *
+ * The cultist pawn piece, a pawn with an active ability
  * @author joshu
  */
 public class CultPawn extends Pawn implements ActiveAbility {

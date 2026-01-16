@@ -8,6 +8,8 @@ import main.java.net.ics4u.summativechess.game.board.Board;
 import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
 
 /**
+ * The victory condition for capturing any king
+ * This is the default victory condition
  *
  * @author joshu
  */

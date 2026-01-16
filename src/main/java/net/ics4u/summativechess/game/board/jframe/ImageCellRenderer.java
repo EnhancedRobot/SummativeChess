@@ -11,6 +11,7 @@ import java.awt.Component;
 import javax.swing.table.DefaultTableCellRenderer;
 
 /**
+ * The renderer for one of the cells in the board
  *
  * @author liame
  */

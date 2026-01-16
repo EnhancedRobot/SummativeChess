@@ -10,6 +10,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * A powerup tile that allows the piece to teleport to any square on the board without taking
  *
  * @author joshu
  */

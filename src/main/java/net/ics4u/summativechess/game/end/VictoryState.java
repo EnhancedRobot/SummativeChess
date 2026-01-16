@@ -5,6 +5,7 @@
 package main.java.net.ics4u.summativechess.game.end;
 
 /**
+ * The class for holding who has lost, returned from VictoryConditions 
  *
  * @author joshu
  */

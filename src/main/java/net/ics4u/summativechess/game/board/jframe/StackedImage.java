@@ -10,6 +10,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
+ * A icon with multiple stacked images, used for rendering the board
  *
  * @author joshu
  */

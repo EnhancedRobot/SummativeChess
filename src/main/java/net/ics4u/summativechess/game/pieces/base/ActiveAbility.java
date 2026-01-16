@@ -5,6 +5,7 @@
 package main.java.net.ics4u.summativechess.game.pieces.base;
 
 /**
+ * Implementing this class adds an active ability to the piece
  *
  * @author joshu
  */

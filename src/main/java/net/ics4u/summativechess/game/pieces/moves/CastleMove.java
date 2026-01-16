@@ -10,6 +10,7 @@ import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The king's castling move, moving to a given square and taking the rook with it
  *
  * @author joshu
  */

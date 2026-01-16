@@ -6,6 +6,7 @@ package main.java.net.ics4u.summativechess.game.board.jframe;
  */
 
 /**
+ * The main menu UI
  *
  * @author liame
  */

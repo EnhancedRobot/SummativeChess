@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 /**
  *
  * @author joshu
+ * 
+ * A class for storing the active game variations for a board
  */
 public class ActiveVariations {
     // The path to the board setups

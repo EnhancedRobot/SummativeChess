@@ -10,6 +10,7 @@ import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The move for when a pawn moves multiple squares forward
  *
  * @author joshu
  */

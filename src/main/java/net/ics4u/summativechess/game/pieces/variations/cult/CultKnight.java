@@ -13,6 +13,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The cultist knight piece, a knight with an active ability
  *
  * @author connor
  */

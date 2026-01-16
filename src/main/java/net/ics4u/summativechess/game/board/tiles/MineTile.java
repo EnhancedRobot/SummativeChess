@@ -8,6 +8,7 @@ import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
 import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 
 /**
+ * A tile that will take any piece that lands on it, also removing itself in the process
  *
  * @author joshu
  */

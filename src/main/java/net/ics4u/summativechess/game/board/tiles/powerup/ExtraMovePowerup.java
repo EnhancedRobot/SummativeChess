@@ -10,6 +10,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * A unimplemented tile that would have given the piece an extra move
  *
  * @author joshu
  */

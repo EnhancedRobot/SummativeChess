@@ -7,6 +7,7 @@ package main.java.net.ics4u.summativechess.game.end;
 import main.java.net.ics4u.summativechess.game.board.Board;
 
 /**
+ * The base class for victory conditions
  *
  * @author joshu
  */

@@ -11,6 +11,8 @@ import main.java.net.ics4u.summativechess.util.BoardPos;
 /**
  *
  * @author joshu
+ * 
+ * A class that handles a single en passant at a given spot
  */
 public class EnPassant {
     // The location on the board at which this en passant is

@@ -14,6 +14,7 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * The generic tile class, from which tiles inherit
  *
  * @author joshu
  */

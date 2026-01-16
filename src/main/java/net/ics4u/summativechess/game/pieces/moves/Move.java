@@ -9,6 +9,7 @@ import main.java.net.ics4u.summativechess.game.pieces.base.Piece;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * A move for a piece to a given point on the board
  *
  * @author joshu
  */

@@ -13,6 +13,7 @@ import java.util.List;
 import main.java.net.ics4u.summativechess.util.BoardPos;
 
 /**
+ * A class for handling loading board files
  *
  * @author joshu
  */
