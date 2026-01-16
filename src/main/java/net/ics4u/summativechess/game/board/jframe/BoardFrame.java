@@ -102,6 +102,7 @@ public class BoardFrame extends javax.swing.JFrame {
                 // Set ability UI to be visible
                 activateAbilityButton.setVisible(true);
                 abilityText.setVisible(true);
+                jScrollPane6.setVisible(true);
                 
                 // Set the piece's text to the ability description
                 abilityText.setText(((ActiveAbility) piece).getAbilityDescription());
@@ -113,6 +114,7 @@ public class BoardFrame extends javax.swing.JFrame {
         // Set ability UI to be not visible if the piece doesn't have an ability
         activateAbilityButton.setVisible(false);
         abilityText.setVisible(false);
+        jScrollPane6.setVisible(false);
     }
 
     /*
@@ -274,15 +276,14 @@ public class BoardFrame extends javax.swing.JFrame {
         }
 
         ;
-        jScrollPane2 = new javax.swing.JScrollPane();
-        MoveListArea = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         CapPieces2 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
         CapPieaces1 = new javax.swing.JTextArea();
         ReturnButton = new javax.swing.JButton();
         activateAbilityButton = new javax.swing.JButton();
-        abilityText = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        abilityText = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -350,10 +351,6 @@ public class BoardFrame extends javax.swing.JFrame {
         BoardTable.getAccessibleContext().setAccessibleName("");
         BoardTable.getAccessibleContext().setAccessibleDescription("");
 
-        MoveListArea.setColumns(20);
-        MoveListArea.setRows(5);
-        jScrollPane2.setViewportView(MoveListArea);
-
         CapPieces2.setColumns(20);
         CapPieces2.setRows(5);
         CapPieces2.setText("Units captured go here. EX:\" K: 2, Q: 1, P: 5 \"");
@@ -370,6 +367,11 @@ public class BoardFrame extends javax.swing.JFrame {
         activateAbilityButton.setText("Activate Ability!");
         activateAbilityButton.addActionListener(this::activateAbilityButtonActionPerformed);
 
+        abilityText.setEditable(false);
+        abilityText.setColumns(20);
+        abilityText.setRows(5);
+        jScrollPane6.setViewportView(abilityText);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -382,36 +384,32 @@ public class BoardFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
+                        .addGap(55, 55, 55)
                         .addComponent(activateAbilityButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(abilityText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                        .addGap(27, 27, 27))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(ReturnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                            .addComponent(ReturnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)
+                        .addGap(203, 203, 203)
                         .addComponent(activateAbilityButton)
-                        .addGap(1, 1, 1)
-                        .addComponent(abilityText, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -470,14 +468,13 @@ public class BoardFrame extends javax.swing.JFrame {
     javax.swing.JTable BoardTable;
     private javax.swing.JTextArea CapPieaces1;
     private javax.swing.JTextArea CapPieces2;
-    private javax.swing.JTextArea MoveListArea;
     private javax.swing.JButton ReturnButton;
-    private javax.swing.JLabel abilityText;
+    private javax.swing.JTextArea abilityText;
     private javax.swing.JButton activateAbilityButton;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane6;
     // End of variables declaration//GEN-END:variables
 
     public void win(int winner) {
