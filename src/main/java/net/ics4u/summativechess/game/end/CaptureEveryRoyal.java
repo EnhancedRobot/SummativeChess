@@ -31,7 +31,7 @@ public class CaptureEveryRoyal extends VictoryCondition {
             // For every piece in that row
             for (Piece piece : row) {
                 // If there is a king on that tile
-                if(piece != null && piece.id.equals("K")) {
+                if(piece != null && (piece.id.equals("K") || piece.id.equals("KC"))) {
                     // The team hasn't actually lost yet
                     hasLost[piece.player] = false;
                 }

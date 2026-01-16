@@ -30,7 +30,7 @@ public class CaptureAnyRoyal extends VictoryCondition {
         // For every captured piece
         for (Piece piece : board.capturedPieces) {
             // If that piece is a king
-            if(piece.id.equals("K")) {
+            if(piece.id.equals("K") || piece.id.equals("KC")) {
                 // Add it to the list of teams that have lost
                 hasLost[piece.player] = true;
             }
