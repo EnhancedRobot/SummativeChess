@@ -131,6 +131,6 @@ public class CultKnight extends Knight implements ActiveAbility {
     */
     @Override
     public String getAbilityDescription() {
-        return "Activate after taking 2 pieces\nMove by executing two consecutive standard moves in a single turn";
+        return "Activate after taking 2 pieces\nMove by doing two normal moves in a single turn\nThe second move cannot take";
     }
 }
