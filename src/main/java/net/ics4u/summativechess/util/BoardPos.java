@@ -5,6 +5,8 @@
 package main.java.net.ics4u.summativechess.util;
 
 /**
+ * A position, usually on the board
+ * Basically a Vector2
  *
  * @author joshu
  */
