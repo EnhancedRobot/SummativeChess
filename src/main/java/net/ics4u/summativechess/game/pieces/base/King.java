@@ -91,7 +91,7 @@ public class King extends Piece {
                 // If there is a piece on the tile
                 if (onTile != null) {
                     // If the piece on the tile is a rook that has never moved
-                    if (onTile.id.equals("R") && onTile.player == player && onTile.timesMoved == 0) {
+                    if ((onTile.id.equals("R") || onTile.id.equals("RC")) && onTile.player == player && onTile.timesMoved == 0) {
                         // Add the castling
 
                         // Get the position for the rook
