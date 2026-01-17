@@ -88,7 +88,7 @@ public class Pawn extends Piece {
         // Get the position to check
         BoardPos check = new BoardPos(position);
         
-        for(int i = 0; i < board.variations.pawnFirstTurnMoveDistance; i++) {
+        for(int i = 0; i < board.variations.pawnFirstTurnMoveDistance - 1; i++) {
             // Step forwards once in the facing direction of the player
             check.add(board.getFacingDirection(player));
 
