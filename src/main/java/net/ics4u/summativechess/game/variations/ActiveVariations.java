@@ -32,6 +32,7 @@ public class ActiveVariations {
     public ActiveVariations (long seed) {
         // Randomize the variants with the given seed
         randomize(seed);
+        //test();
     }
     
     public void test() {
