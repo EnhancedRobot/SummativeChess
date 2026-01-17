@@ -45,7 +45,12 @@ public class BoardFrame extends javax.swing.JFrame {
         
         initComponents();
         
-        BoardTable.setRowHeight(75);
+        BoardTable.setRowHeight(55);
+        for(int i = 0; i < size.y + 2; i++) {
+            BoardTable.getColumnModel().getColumn(i).setMaxWidth(55);
+            BoardTable.getColumnModel().getColumn(i).setMinWidth(55);
+            BoardTable.getColumnModel().getColumn(i).setResizable(false);
+        }
 
         // Center the UI
         setLocationRelativeTo(null);
@@ -305,6 +310,7 @@ public class BoardFrame extends javax.swing.JFrame {
 
         BoardTable.setBackground(new java.awt.Color(153, 153, 153));
         BoardTable.setModel(getTableModel());
+        BoardTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         BoardTable.setColumnSelectionAllowed(true);
         BoardTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BoardTable.setGridColor(new java.awt.Color(102, 102, 102));
@@ -328,14 +334,6 @@ public class BoardFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(BoardTable);
         BoardTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        if (BoardTable.getColumnModel().getColumnCount() > 0) {
-            for(int i = 0; i < size.y; i++) {
-                BoardTable.getColumnModel().getColumn(0).setResizable(false);
-                BoardTable.getColumnModel().getColumn(0).setWidth(55);
-            }
-        }
-
-        BoardTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         BoardTable.getAccessibleContext().setAccessibleName("");
         BoardTable.getAccessibleContext().setAccessibleDescription("");
@@ -405,7 +403,7 @@ public class BoardFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(185, 185, 185)
+                        .addGap(166, 166, 166)
                         .addComponent(activateAbilityButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
