@@ -2,6 +2,17 @@ package main.java.net.ics4u.summativechess.game.board.jframe;
 
 import java.awt.*;
 import java.awt.Component;
+// ===============================
+// Omar's Work: imports for Save/Load shortcuts + dialogs
+// ===============================
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.io.IOException;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
+import main.java.net.ics4u.summativechess.game.board.GameHistoryIO;
 import javax.swing.ImageIcon;
 import javax.swing.table.*;
 import main.java.net.ics4u.summativechess.game.board.Board;
@@ -47,7 +58,15 @@ public class BoardFrame extends javax.swing.JFrame {
         // Draw the initial board
         drawBoard();
 
+// =======================================================
+// Omar's Work (Intermediate):
+// Show move history in the UI and enable save/load shortcuts
+// =======================================================
+        updateMoveListUI();
+        setupSaveLoadShortcuts();
+
         setVisible(true);
+
     }
 
     // Call method to sync visual board
@@ -276,6 +295,8 @@ public class BoardFrame extends javax.swing.JFrame {
         }
 
         ;
+        jScrollPane2 = new javax.swing.JScrollPane();
+        MoveListArea = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         CapPieces2 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -351,6 +372,10 @@ public class BoardFrame extends javax.swing.JFrame {
         BoardTable.getAccessibleContext().setAccessibleName("");
         BoardTable.getAccessibleContext().setAccessibleDescription("");
 
+        MoveListArea.setColumns(20);
+        MoveListArea.setRows(5);
+        jScrollPane2.setViewportView(MoveListArea);
+
         CapPieces2.setColumns(20);
         CapPieces2.setRows(5);
         CapPieces2.setText("Units captured go here. EX:\" K: 2, Q: 1, P: 5 \"");
@@ -384,32 +409,36 @@ public class BoardFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
+                        .addGap(117, 117, 117)
                         .addComponent(activateAbilityButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(abilityText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(ReturnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(ReturnButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(203, 203, 203)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)
                         .addComponent(activateAbilityButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGap(1, 1, 1)
+                        .addComponent(abilityText, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -437,6 +466,8 @@ public class BoardFrame extends javax.swing.JFrame {
 
         // Redraw the board in case something has changed
         drawBoard();
+        updateMoveListUI();
+
 
         //System.out.print("clicked on table");
     }//GEN-LAST:event_BoardTableMouseClicked
@@ -462,19 +493,99 @@ public class BoardFrame extends javax.swing.JFrame {
             drawBoard();
         }
     }//GEN-LAST:event_activateAbilityButtonActionPerformed
+// =======================================================
+// Omar's Work (Intermediate):
+// Updates the MoveListArea with the contents of board.moveHistory.
+// This makes move history visible to the teacher during the demo.
+// =======================================================
+
+    private void updateMoveListUI() {
+        if (MoveListArea == null) {
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        // Print each move on its own line with numbering
+        for (int i = 0; i < board.moveHistory.size(); i++) {
+            sb.append(i + 1).append(". ").append(board.moveHistory.get(i)).append("\n");
+        }
+
+        MoveListArea.setText(sb.toString());
+    }
+
+// =======================================================
+// Omar's Work (Intermediate):
+// Keyboard shortcuts for saving/loading without editing GUI builder code.
+// Ctrl+S -> saves to savegame.txt
+// Ctrl+L -> loads from savegame.txt
+// =======================================================
+    private void setupSaveLoadShortcuts() {
+        JComponent root = getRootPane();
+
+        // ---- CTRL+S (SAVE) ----
+        root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK), "SAVE_GAME");
+
+        root.getActionMap().put("SAVE_GAME", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    GameHistoryIO.saveGame(board, "savegame.txt");
+                    JOptionPane.showMessageDialog(BoardFrame.this,
+                            "Saved to savegame.txt",
+                            "Save Successful",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(BoardFrame.this,
+                            "Save failed: " + ex.getMessage(),
+                            "Save Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // ---- CTRL+L (LOAD) ----
+        root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_L, KeyEvent.CTRL_DOWN_MASK), "LOAD_GAME");
+
+        root.getActionMap().put("LOAD_GAME", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    GameHistoryIO.loadGame(board, "savegame.txt");
+
+                    // After loading, redraw and refresh history UI
+                    drawBoard();
+                    updateMoveListUI();
+
+                    JOptionPane.showMessageDialog(BoardFrame.this,
+                            "Loaded from savegame.txt",
+                            "Load Successful",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(BoardFrame.this,
+                            "Load failed: " + ex.getMessage(),
+                            "Load Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JTable BoardTable;
     private javax.swing.JTextArea CapPieaces1;
     private javax.swing.JTextArea CapPieces2;
+    private javax.swing.JTextArea MoveListArea;
     private javax.swing.JButton ReturnButton;
-    private javax.swing.JTextArea abilityText;
+    private javax.swing.JLabel abilityText;
     private javax.swing.JButton activateAbilityButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
     // End of variables declaration//GEN-END:variables
 
     public void win(int winner) {
