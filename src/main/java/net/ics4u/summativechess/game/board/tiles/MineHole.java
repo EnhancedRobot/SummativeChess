@@ -12,31 +12,19 @@ import main.java.net.ics4u.summativechess.game.pieces.moves.Move;
  *
  * @author joshu
  */
-public class MineTile extends Tile {
+public class MineHole extends Tile {
     /*
-     Creates a new mine tile
+     Creates a new mine hole tile
     
-     Post: A new mine tile is created 
+     Post: A new mine hole tile is created 
     */
-    public MineTile() {
+    public MineHole() {
         super();
         
-        // Set the mine tile's id to M
-        id = "M";
-    }
-    
-    
-    /*
-     Called when a piece moves onto the tile
-    
-     Post: Deletes the piece and this tile
-    */
-    @Override
-    public void onMoveTo(Move move) {        
-        // Take the piece when a player moves there
-        move.movingPiece.take();
+        // Set the image to be the mine hole image
+        setImage("variations/mine/mine_hole");
         
-        // Replace this tile with a mine hole
-        board.setTileAt(position, new MineHole());        
+        // Set the mine tile's id to M
+        id = "MH";
     }
 }

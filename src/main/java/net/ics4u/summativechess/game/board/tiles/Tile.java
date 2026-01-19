@@ -58,6 +58,7 @@ public abstract class Tile {
         // Get the tile based on the given id
         switch(tileString) {
             case "M" -> {created = new MineTile();}
+            case "MH" -> {created = new MineHole();}
             case "PT" -> {created = new TeleportPowerup();}
             // Unfortuneately, It's not easy to do this, so I didn't add it. Sorry.
             //case "PM" -> {created = new ExtraMovePowerup();}
@@ -73,5 +74,12 @@ public abstract class Tile {
         }
         
         return created;
+    }
+    
+    /**
+     * Set the image icon on the tile.
+     */
+    protected void setImage(String imagePath) {               
+        this.image = new ImageIcon("assets/images/" + imagePath + ".png");
     }
 }
